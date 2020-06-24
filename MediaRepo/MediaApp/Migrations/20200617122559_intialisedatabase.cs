@@ -13,7 +13,7 @@ namespace MediaApp.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Amount = table.Column<decimal>(nullable: false),
+                    Rating = table.Column<decimal>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     Date = table.Column<DateTime>(nullable: false),
                     Category = table.Column<int>(nullable: false),

@@ -19,7 +19,7 @@
                         Date
                     </th>
                     <th>
-                        Amount
+                        Rating
                     </th>
                     <th></th>
                     <th></th>
@@ -35,7 +35,7 @@
                         @Model.Highestmedia.Date
                     </td>
                     <td class="info">
-                        @Model.Highestmedia.Amount
+                        @Model.Highestmedia.Rating
                     </td>
                 </tr>
             </tbody>
@@ -50,7 +50,7 @@
                         Date
                     </th>
                     <th>
-                        Amount
+                        Rating
                     </th>
                     <th></th>
                     <th></th>
@@ -66,7 +66,7 @@
                         @Model.Lowestmedia.Date
                     </td>
                     <td class="info">
-                        @Model.Lowestmedia.Amount
+                        @Model.Lowestmedia.Rating
                     </td>
                 </tr>
             </tbody>
@@ -78,7 +78,7 @@
                         Date
                     </th>
                     <th>
-                        Amount
+                        Rating
                     </th>
                     <th></th>
                     <th></th>
@@ -91,7 +91,7 @@
                         @Model.HighestDaymedia.Date.ToShortDateString()
                     </td>
                     <td class="info">
-                        @Model.HighestDaymedia.Amount
+                        @Model.HighestDaymedia.Rating
                     </td>
                 </tr>
             </tbody>
@@ -103,7 +103,7 @@
                         Month
                     </th>
                     <th>
-                        Total Amount
+                        Total Rating
                     </th>
                     <th></th>
                     <th></th>
@@ -118,7 +118,7 @@
                             @month.Date.ToString("MMMM", new System.Globalization.CultureInfo("en-US", true))
                         </td>
                         <td class="info">
-                            @month.Amount
+                            @month.Rating
                         </td>
                     </tr>
                 }
@@ -131,7 +131,7 @@
                         Category
                     </th>
                     <th>
-                        Amount
+                        Rating
                     </th>
                     <th></th>
                     <th></th>
@@ -144,7 +144,7 @@
                         @Model.MostExpensive.Category
                     </td>
                     <td class="info">
-                        @Model.MostExpensive.Amount
+                        @Model.MostExpensive.Rating
                     </td>
                 </tr>
             </tbody>
@@ -156,7 +156,7 @@
                         Category
                     </th>
                     <th>
-                        Amount
+                        Rating
                     </th>
                     <th></th>
                     <th></th>
@@ -169,7 +169,7 @@
                         @Model.LeastExpensive.Category
                     </td>
                     <td class="info">
-                        @Model.LeastExpensive.Amount
+                        @Model.LeastExpensive.Rating
                     </td>
                 </tr>
             </tbody>

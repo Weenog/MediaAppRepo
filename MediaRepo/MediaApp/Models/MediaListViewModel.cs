@@ -12,7 +12,7 @@ namespace MediaApp.Models
         public int Id { get; set; }
         public string Description { get; set; }
         public DateTime Date { get; set; }
-        public decimal Amount { get; set; }
+        public decimal Rating { get; set; }
         public string Category { get; set; }
         public string PhotoUrl { get; set; }
        

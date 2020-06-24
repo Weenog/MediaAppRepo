@@ -29,12 +29,12 @@ namespace MediaApp.Controllers
             StatisticsIndexViewModel vm = new StatisticsIndexViewModel()
             {
                 medias = _medias,
-                Highestmedia = _medias.OrderByDescending(x => x.Amount).First(),
-                Lowestmedia = _medias.OrderBy(x => x.Amount).First(),
-                Monthlymedias = _medias.GroupBy(x => new { x.Date.Date.Month, x.Date.Year }).Select(g => new Groupedmedias { Date = new DateTime(g.Key.Year, g.Key.Month, 01), Amount = g.Sum(m => m.Amount) }).OrderBy(x => x.Date),
-                HighestDaymedia = _medias.GroupBy(x => x.Date.Date).Select(x => new Groupedmedias { Date = x.Key, Amount = x.Sum(m => m.Amount) }).OrderByDescending(x => x.Amount).First(),
-                MostExpensive = _medias.GroupBy(x => x.Category).Select(g => new Groupedmedias { Category = g.Key, Amount = g.Sum(m => (decimal)m.Amount) }).OrderByDescending(x => x.Amount).First(),
-                LeastExpensive = _medias.GroupBy(x => x.Category).Select(g => new Groupedmedias { Category = g.Key, Amount = g.Sum(m => (decimal)m.Amount) }).OrderBy(x => x.Amount).First()
+                Highestmedia = _medias.OrderByDescending(x => x.Rating).First(),
+                Lowestmedia = _medias.OrderBy(x => x.Rating).First(),
+                Monthlymedias = _medias.GroupBy(x => new { x.Date.Date.Month, x.Date.Year }).Select(g => new Groupedmedias { Date = new DateTime(g.Key.Year, g.Key.Month, 01), Rating = g.Sum(m => m.Rating) }).OrderBy(x => x.Date),
+                HighestDaymedia = _medias.GroupBy(x => x.Date.Date).Select(x => new Groupedmedias { Date = x.Key, Rating = x.Sum(m => m.Rating) }).OrderByDescending(x => x.Rating).First(),
+                MostExpensive = _medias.GroupBy(x => x.Category).Select(g => new Groupedmedias { Category = g.Key, Rating = g.Sum(m => (decimal)m.Rating) }).OrderByDescending(x => x.Rating).First(),
+                LeastExpensive = _medias.GroupBy(x => x.Category).Select(g => new Groupedmedias { Category = g.Key, Rating = g.Sum(m => (decimal)m.Rating) }).OrderBy(x => x.Rating).First()
             };
             return View(vm);
         }

@@ -42,7 +42,7 @@ namespace MediaApp.Controllers
                     Category = thing.Category.Name,
                     Description = (string)thing.Description,
                     Date = (DateTime)thing.Date,
-                    Amount = (decimal)thing.Amount,
+                    Rating = (decimal)thing.Rating,
                     PhotoUrl = thing.PhotoUrl
                 };
                 XpList.Add(Xp);
@@ -75,7 +75,7 @@ namespace MediaApp.Controllers
         {
             Media newmedia = new Media()
             {
-                Amount = cvm.Amount,
+                Rating = cvm.Rating,
                 CategoryId = cvm.CategoryId,
                 Description = cvm.Description,
                 Date = cvm.Date,
@@ -114,7 +114,7 @@ namespace MediaApp.Controllers
 
             }
 
-            evm.Amount = (decimal)mediaToEdit.Amount;
+            evm.Rating = (decimal)mediaToEdit.Rating;
             evm.CategoryId = mediaToEdit.Category.Id;
             evm.Description = (string)mediaToEdit.Description;
             evm.Date = (DateTime)mediaToEdit.Date;
@@ -132,7 +132,7 @@ namespace MediaApp.Controllers
 
             Media changedmedia = await _dbContext.medias.Include(x => x.Category).FirstOrDefaultAsync(x => x.Id == id);
 
-            changedmedia.Amount = vm.Amount;
+            changedmedia.Rating = vm.Rating;
             changedmedia.CategoryId = vm.CategoryId;
             changedmedia.Description = vm.Description;
             changedmedia.Date = vm.Date;
@@ -151,7 +151,7 @@ namespace MediaApp.Controllers
             MediaDeleteViewModel dvm = new MediaDeleteViewModel()
             {
                 Id = mediaToDelete.Id,
-                Amount = (decimal)mediaToDelete.Amount,
+                Rating = (decimal)mediaToDelete.Rating,
                 Description = (string)mediaToDelete.Description,
                 Date = (DateTime)mediaToDelete.Date
             };
