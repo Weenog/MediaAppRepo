@@ -1,0 +1,190 @@
+﻿@model StatisticsIndexViewModel
+
+@{
+    if (Model.medias.Count() == 0)
+    {
+        <br />
+        <strong>There are currently no medias listed.</strong>
+    }
+
+    else
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        media
+                    </th>
+                    <th>
+                        Date
+                    </th>
+                    <th>
+                        Amount
+                    </th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><strong>Highest media</strong></tr>
+                <tr>
+                    <td class="info">
+                        @Model.Highestmedia.Description
+                    </td>
+                    <td class="info">
+                        @Model.Highestmedia.Date
+                    </td>
+                    <td class="info">
+                        @Model.Highestmedia.Amount
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        media
+                    </th>
+                    <th>
+                        Date
+                    </th>
+                    <th>
+                        Amount
+                    </th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><strong>Lowest media</strong></tr>
+                <tr>
+                    <td class="info">
+                        @Model.Lowestmedia.Description
+                    </td>
+                    <td class="info">
+                        @Model.Lowestmedia.Date
+                    </td>
+                    <td class="info">
+                        @Model.Lowestmedia.Amount
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        Date
+                    </th>
+                    <th>
+                        Amount
+                    </th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><strong>Most Expensive Date</strong></tr>
+                <tr>
+                    <td class="info">
+                        @Model.HighestDaymedia.Date.ToShortDateString()
+                    </td>
+                    <td class="info">
+                        @Model.HighestDaymedia.Amount
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        Month
+                    </th>
+                    <th>
+                        Total Amount
+                    </th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><strong>Monthly medias</strong></tr>
+                @foreach (var month in Model.Monthlymedias)
+                {
+                    <tr>
+                        <td class="info">
+                            @month.Date.ToString("MMMM", new System.Globalization.CultureInfo("en-US", true))
+                        </td>
+                        <td class="info">
+                            @month.Amount
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        Category
+                    </th>
+                    <th>
+                        Amount
+                    </th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><strong>Most Expensive Category</strong></tr>
+                <tr>
+                    <td class="info">
+                        @Model.MostExpensive.Category
+                    </td>
+                    <td class="info">
+                        @Model.MostExpensive.Amount
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        Category
+                    </th>
+                    <th>
+                        Amount
+                    </th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><strong>Least Expensive Category</strong></tr>
+                <tr>
+                    <td class="info">
+                        @Model.LeastExpensive.Category
+                    </td>
+                    <td class="info">
+                        @Model.LeastExpensive.Amount
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    }
+}
+
+
+
+<style>
+    table, td {
+        border-bottom: 1px solid black;
+    }
+
+    .info {
+        width: 20vw;
+    }
+</style>

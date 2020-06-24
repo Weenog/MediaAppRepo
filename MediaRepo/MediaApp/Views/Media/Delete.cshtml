@@ -1,0 +1,16 @@
+﻿
+@model MediaDeleteViewModel
+
+
+
+<strong> Are you sure you want to delete this? @Model.Description of €@Model.Amount on @Model.Date?</strong>
+
+
+
+<form asp-controller="media" asp-action="ConfirmDelete" method="post" asp-route-id="@Model.Id">
+
+    <button class=" btn-dark" type="submit">Yes</button>
+
+</form>
+
+<a asp-controller="media" asp-action="Index">Back to index</a>

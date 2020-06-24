@@ -1,0 +1,52 @@
+﻿
+@model MediaCreateViewModel
+
+<br />
+<strong>Add new Media Here.</strong>
+
+
+
+<form asp-controller="media" asp-action="Create" method="post">
+
+    <div class="form-group">
+        <label asp-for="Description">Title</label>
+        <input asp-for="Description" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Category"></label>
+        <select asp-for="@Model.CategoryId" asp-items="@Model.Category">
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Category">Genre</label>
+        <select asp-for="@Model.CategoryId" asp-items="@Model.Category">
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Date">Year</label>
+        <input type="datetime" asp-for="Date" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Date">Seen</label>
+        <input type="datetime" asp-for="Date" />
+    </div>
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Rating</span>
+        </div>
+        <input asp-for="Amount" type="text" class="form-control">
+    </div>
+
+
+    <button class="btn-success" type="submit">Create</button>
+
+</form>
+
+
+
+

@@ -1,0 +1,83 @@
+﻿@model IEnumerable<MediaListViewModel>
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<MediaApp.Domain.MediaAppIdentity> signInManager
+
+
+<a asp-controller="media" asp-action="Create">Add new Media</a>
+@{
+    if (Model.Count() == 0)
+
+    {
+    <br />
+    <strong>None Available.</strong>
+    }
+    else
+    {
+    <table>
+        <thead>
+            <tr>
+                <th>
+
+                </th>
+                <th>
+                    Media
+                </th>
+                <th>
+                    Category
+                </th>
+                <th>
+                    Date
+                </th>
+                <th>
+                    Amount
+                </th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (MediaListViewModel media in Model)
+                {
+            <tr>
+                <td class="info">
+                    <img src="@media.PhotoUrl" style="width: 20px;
+    height: 20px;" />
+                </td>
+                <td class="info">
+                    @media.Description
+                </td>
+                <td class="info">
+                    @media.Category
+                </td>
+                <td class="info">
+                    @media.Date
+                </td>
+                <td class="info">
+                    @media.Amount
+                </td>
+                <td class="feature">
+                    <a asp-controller="media" asp-action="Edit" asp-route-id="@media.Id">Edit</a>
+                </td>
+                <td class="feature">
+                    <a asp-controller="media" asp-action="Delete" asp-route-id="@media.Id">Delete</a>
+                </td>
+            </tr>
+                }
+        </tbody>
+    </table>
+    }
+}
+
+
+
+<style>
+    table, td {
+        border-bottom: 1px solid black;
+    }
+
+    .info {
+        width: 20vw;
+    }
+</style>
