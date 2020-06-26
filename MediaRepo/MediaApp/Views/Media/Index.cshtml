@@ -9,64 +9,89 @@
     if (Model.Count() == 0)
 
     {
-    <br />
-    <strong>None Available.</strong>
+        <br />
+        <strong>None Available.</strong>
     }
     else
     {
-    <table>
-        <thead>
-            <tr>
-                <th>
+        <table>
+            <thead>
+                <tr>
+                    <th>
 
-                </th>
-                <th>
-                    Media
-                </th>
-                <th>
-                    Category
-                </th>
-                <th>
-                    Date
-                </th>
-                <th>
-                    Rating 
-                </th>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
+                    </th>
+                    <th>
+                        Media
+                    </th>
+                    <th>
+                        Category
+                    </th>
+                    <th>
+                        Date
+                    </th>
+                    <th>
+                        Rating
+                    </th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
 
-            @foreach (MediaListViewModel media in Model)
+                @foreach (MediaListViewModel media in Model)
                 {
-            <tr>
-                <td class="info">
-                    <img src="@media.PhotoUrl" style="width: 20px;
+                    <tr>
+                        <td class="info">
+                            <img src="@media.PhotoUrl" style="width: 20px;
     height: 20px;" />
-                </td>
-                <td class="info">
-                    @media.Description
-                </td>
-                <td class="info">
-                    @media.Category
-                </td>
-                <td class="info">
-                    @media.Date
-                </td>
-                <td class="info">
-                    @media.Rating
-                </td>
-                <td class="feature">
-                    <a asp-controller="media" asp-action="Edit" asp-route-id="@media.Id">Edit</a>
-                </td>
-                <td class="feature">
-                    <a asp-controller="media" asp-action="Delete" asp-route-id="@media.Id">Delete</a>
-                </td>
-            </tr>
+                        </td>
+                        <td class="info">
+                            @media.Description
+                        </td>
+                        <td class="info">
+                            @media.Category
+                        </td>
+                        <td class="info">
+                            @media.Date
+                        </td>
+                        <td class="info">
+                            @switch (media.Rating)
+                            {
+                                case 0:<span class="stars-container stars-0">★★★★★</span>
+                                    break;
+                                case 1:<span class="stars-container stars-10">★★★★★</span>
+                                    break;
+                                case 2:<span class="stars-container stars-20">★★★★★</span>
+                                    break;
+                                case 3:<span class="stars-container stars-30">★★★★★</span>
+                                    break;
+                                case 4:<span class="stars-container stars-40">★★★★★</span>
+                                    break;
+                                case 5:<span class="stars-container stars-50">★★★★★</span>
+                                    break;
+                                case 6:<span class="stars-container stars-60">★★★★★</span>
+                                    break;
+                                case 7:<span class="stars-container stars-70">★★★★★</span>
+                                    break;
+                                case 8:<span class="stars-container stars-80">★★★★★</span>
+                                    break;
+                                case 9:<span class="stars-container stars-90">★★★★★</span>
+                                    break;
+                                case 10:<span class="stars-container stars-100">★★★★★</span>
+                                    break;
+                            }
+                            
+                        </td>
+                        <td class="feature">
+                            <a asp-controller="media" asp-action="Edit" asp-route-id="@media.Id">Edit</a>
+                        </td>
+                        <td class="feature">
+                            <a asp-controller="media" asp-action="Delete" asp-route-id="@media.Id">Delete</a>
+                        </td>
+                    </tr>
                 }
-        </tbody>
-    </table>
+            </tbody>
+        </table>
     }
 }
 
