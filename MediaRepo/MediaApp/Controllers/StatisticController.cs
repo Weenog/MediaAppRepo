@@ -32,9 +32,9 @@ namespace MediaApp.Controllers
                 Highestmedia = _medias.OrderByDescending(x => x.Rating).First(),
                 Lowestmedia = _medias.OrderBy(x => x.Rating).First(),
                 Monthlymedias = _medias.GroupBy(x => new { x.Date.Date.Month, x.Date.Year }).Select(g => new Groupedmedias { Date = new DateTime(g.Key.Year, g.Key.Month, 01), Rating = g.Sum(m => m.Rating) }).OrderBy(x => x.Date),
-                HighestDaymedia = _medias.GroupBy(x => x.Date.Date).Select(x => new Groupedmedias { Date = x.Key, Rating = x.Sum(m => m.Rating) }).OrderByDescending(x => x.Rating).First(),
-                MostExpensive = _medias.GroupBy(x => x.Category).Select(g => new Groupedmedias { Category = g.Key, Rating = g.Sum(m => (decimal)m.Rating) }).OrderByDescending(x => x.Rating).First(),
-                LeastExpensive = _medias.GroupBy(x => x.Category).Select(g => new Groupedmedias { Category = g.Key, Rating = g.Sum(m => (decimal)m.Rating) }).OrderBy(x => x.Rating).First()
+                HighestDaymedia = _medias.GroupBy(x => x.Date.Date).Select(x => new Groupedmedias { Date = x.Key, Rating = (int)x.Sum(m => m.Rating) }).OrderByDescending(x => x.Rating).First(),
+                MostExpensive = _medias.GroupBy(x => x.Category).Select(g => new Groupedmedias { Category = g.Key, Rating = g.Sum(m => (int)m.Rating) }).OrderByDescending(x => x.Rating).First(),
+                LeastExpensive = _medias.GroupBy(x => x.Category).Select(g => new Groupedmedias { Category = g.Key, Rating = g.Sum(m => (int)m.Rating) }).OrderBy(x => x.Rating).First()
             };
             return View(vm);
         }

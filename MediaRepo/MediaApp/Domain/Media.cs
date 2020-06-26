@@ -10,7 +10,7 @@ namespace MediaApp.Domain
     public class Media
     {
         public int Id { get; set; }
-        public decimal Rating { get; set; }
+        public int Rating { get; set; }
         public string Description { get; set; }
         public DateTime Date { get; set; }
         public int CategoryId { get; set; }

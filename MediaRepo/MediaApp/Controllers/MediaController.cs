@@ -42,7 +42,7 @@ namespace MediaApp.Controllers
                     Category = thing.Category.Name,
                     Description = (string)thing.Description,
                     Date = (DateTime)thing.Date,
-                    Rating = (decimal)thing.Rating,
+                    Rating = (int)thing.Rating,
                     PhotoUrl = thing.PhotoUrl
                 };
                 XpList.Add(Xp);
@@ -114,7 +114,7 @@ namespace MediaApp.Controllers
 
             }
 
-            evm.Rating = (decimal)mediaToEdit.Rating;
+            evm.Rating = (int)mediaToEdit.Rating;
             evm.CategoryId = mediaToEdit.Category.Id;
             evm.Description = (string)mediaToEdit.Description;
             evm.Date = (DateTime)mediaToEdit.Date;
@@ -151,7 +151,7 @@ namespace MediaApp.Controllers
             MediaDeleteViewModel dvm = new MediaDeleteViewModel()
             {
                 Id = mediaToDelete.Id,
-                Rating = (decimal)mediaToDelete.Rating,
+                Rating = (int)mediaToDelete.Rating,
                 Description = (string)mediaToDelete.Description,
                 Date = (DateTime)mediaToDelete.Date
             };
