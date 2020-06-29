@@ -54,16 +54,14 @@
                            type="checkbox">
                     <span class="checkmark"></span>
                 }
-
-
             </td>
 
             <td class="info">
                 <img src="@media.PhotoUrl" style="width: 20px;
     height: 20px;" />
-            
+
                 @media.Category
-           
+
             </td>
 
 
@@ -104,9 +102,13 @@
 
             </td>
 
+            <td class="feature">
+                <a asp-controller="media" asp-action="Edit" asp-route-id="@media.Id">Details  </a>
+            </td>
+            <td>     </td>
 
             <td class="feature">
-                <a asp-controller="media" asp-action="Edit" asp-route-id="@media.Id">Edit</a>
+                <a asp-controller="media" asp-action="Edit" asp-route-id="@media.Id"> Edit </a>
             </td>
             <td class="feature">
                 <a asp-controller="media" asp-action="Delete" asp-route-id="@media.Id">Delete</a>

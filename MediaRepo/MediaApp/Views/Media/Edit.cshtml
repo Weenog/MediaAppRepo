@@ -27,7 +27,11 @@
             <select asp-for="@Model.CategoryId" asp-items="@Model.Category">
             </select>
 
-
+            <div class="container">
+                <label asp-for="Watched"> Watched</label>
+                <input type="checkbox" asp-for="Watched" checked="checked">
+                <span class="checkmark"></span>
+            </div>
 
         </div>
 
