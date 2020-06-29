@@ -16,6 +16,7 @@ namespace MediaApp.Models
         public int Rating { get; set; }
         public int CategoryId { get; set; }
         public List<SelectListItem> Category { get; set; } = new List<SelectListItem>();
+        public bool Watched { get; set; }
     }
 
     

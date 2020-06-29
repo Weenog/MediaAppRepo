@@ -43,7 +43,8 @@ namespace MediaApp.Controllers
                     Description = (string)thing.Description,
                     Date = (DateTime)thing.Date,
                     Rating = (int)thing.Rating,
-                    PhotoUrl = thing.PhotoUrl
+                    PhotoUrl = thing.PhotoUrl,
+                    Watched = thing.Watched
                 };
                 XpList.Add(Xp);
             }
@@ -79,7 +80,8 @@ namespace MediaApp.Controllers
                 CategoryId = cvm.CategoryId,
                 Description = cvm.Description,
                 Date = cvm.Date,
-                PhotoUrl= cvm.PhotoUrl
+                PhotoUrl= cvm.PhotoUrl,
+                Watched= cvm.Watched
             };
             newmedia.Category = await _dbContext.Categories.FirstOrDefaultAsync(x => x.Id == newmedia.CategoryId);
             if (String.IsNullOrEmpty(newmedia.PhotoUrl))
@@ -118,6 +120,7 @@ namespace MediaApp.Controllers
             evm.CategoryId = mediaToEdit.Category.Id;
             evm.Description = (string)mediaToEdit.Description;
             evm.Date = (DateTime)mediaToEdit.Date;
+            evm.Watched = mediaToEdit.Watched;
             
             return View(evm);
 
@@ -136,6 +139,7 @@ namespace MediaApp.Controllers
             changedmedia.CategoryId = vm.CategoryId;
             changedmedia.Description = vm.Description;
             changedmedia.Date = vm.Date;
+            changedmedia.Watched = vm.Watched;
 
             var media = _dbContext.medias.SingleOrDefault(a => a.Id == id);
             _dbContext.Remove(media);
@@ -153,7 +157,8 @@ namespace MediaApp.Controllers
                 Id = mediaToDelete.Id,
                 Rating = (int)mediaToDelete.Rating,
                 Description = (string)mediaToDelete.Description,
-                Date = (DateTime)mediaToDelete.Date
+                Date = (DateTime)mediaToDelete.Date,
+                Watched = mediaToDelete.Watched,
             };
 
             return View(dvm);

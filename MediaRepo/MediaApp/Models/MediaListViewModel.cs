@@ -15,7 +15,8 @@ namespace MediaApp.Models
         public int Rating { get; set; }
         public string Category { get; set; }
         public string PhotoUrl { get; set; }
-       
+        public bool Watched { get; set; }
+
 
     }
 }

@@ -12,13 +12,13 @@ namespace MediaApp.Models
 
     {
 
-        public Media Highestmedia { get; set; }
+        public Media Highestrating { get; set; }
         public Groupedmedias HighestDaymedia { get; set; }
         public IEnumerable<Groupedmedias> Monthlymedias { get; set; }
         public Media Lowestmedia { get; set; }
         public IEnumerable<Media> medias { get; set; }
-        public Groupedmedias MostExpensive { get; set; }
-        public Groupedmedias LeastExpensive { get; set; }
+        public Groupedmedias MostPopular { get; set; }
+        public Groupedmedias LeastPopular { get; set; }
 
 
     }
