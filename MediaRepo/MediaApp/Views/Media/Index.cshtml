@@ -1,20 +1,4 @@
 ﻿
-<script type="text/javascript">
-
-    $(document).ready(function ()
-    {
-        function saveWatchedStatus(id)
-        {
-        fetch("https://localhost:44337/media/watched/" + id,
-        {
-            method: 'PUT',
-            headers: {"Content-Type":'application/json',}
-        })
-    }
-
-    });
-</script>
-
 
 @model IEnumerable<MediaListViewModel>
 @using Microsoft.AspNetCore.Identity
@@ -24,7 +8,6 @@
 <a asp-controller="media" asp-action="Create">Add new Media</a>
 @{
     if (Model.Count() == 0)
-
     {
         <br />
         <strong>None Available.</strong>
@@ -60,8 +43,9 @@
                     <tr>
                         <td class="info">
                             <label asp-for="@media.Watched"></label>
-                            <input type="checkbox" asp-for="@media.Watched" checked="@(media.Watched == true)" onclick="saveWatchedStatus(@media.Id)">
-                            <span class="checkmark"></span>
+                            <input type="checkbox" asp-for="@media.Watched" checked="@(media.Watched == true)" onclick="saveWatchedStatus('@Url.Action("UpdateWatchStatus","media")'
+,@media.Id
+)">                            <span class="checkmark"></span>
 
                         </td>
 

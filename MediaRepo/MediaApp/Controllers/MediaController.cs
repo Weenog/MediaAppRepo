@@ -14,7 +14,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MediaApp.Controllers
 {
-    
+
     public class MediaController : Controller
     {
 
@@ -151,10 +151,12 @@ namespace MediaApp.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPut("watched/{id:int}")]
-        public async Task<IActionResult> UpdateWatchStatus([FromRoute]int id)
+        [HttpPost]
+        public async Task<IActionResult> UpdateWatchStatus(int id)
         {
-            var media = await _dbContext.medias.FirstOrDefaultAsync(x => x.Id == id);
+            var media = await _dbContext.medias.FirstOrDefaultAsync(x =>
+x.Id
+ == id);
             media.Watched = !media.Watched;
             await _dbContext.SaveChangesAsync();
             return (RedirectToAction("Index"));
@@ -191,7 +193,7 @@ namespace MediaApp.Controllers
 }
 
 
-   
+
 
 
 
