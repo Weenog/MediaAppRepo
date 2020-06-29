@@ -29,7 +29,7 @@
 
             <div class="container">
                 <label asp-for="Watched"> Watched</label>
-                <input type="checkbox" asp-for="Watched" checked="checked">
+                <input type="checkbox" asp-for="Watched" checked="@(@Model.Watched == true)">
                 <span class="checkmark"></span>
             </div>
 

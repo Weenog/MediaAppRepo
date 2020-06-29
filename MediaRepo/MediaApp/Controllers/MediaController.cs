@@ -11,8 +11,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace MediaApp.Controllers
 {
+    
     public class MediaController : Controller
     {
 
@@ -30,7 +32,7 @@ namespace MediaApp.Controllers
         {
 
             List<MediaListViewModel> XpList = new List<MediaListViewModel>();
-            IEnumerable<Media> medias = await _dbContext.medias.Include(x =>x.Category).ToListAsync();
+            IEnumerable<Media> medias = await _dbContext.medias.Include(x => x.Category).ToListAsync();
             IEnumerable<Media> sortedmedias = medias.OrderBy(x => x.Date);
             var media = new MediaEditViewModel();
 
@@ -80,15 +82,15 @@ namespace MediaApp.Controllers
                 CategoryId = cvm.CategoryId,
                 Description = cvm.Description,
                 Date = cvm.Date,
-                PhotoUrl= cvm.PhotoUrl,
-                Watched= cvm.Watched
+                PhotoUrl = cvm.PhotoUrl,
+                Watched = cvm.Watched
             };
             newmedia.Category = await _dbContext.Categories.FirstOrDefaultAsync(x => x.Id == newmedia.CategoryId);
             if (String.IsNullOrEmpty(newmedia.PhotoUrl))
             {
                 _photoService.AssignPicTomedia(newmedia);
             }
-            
+
             _dbContext.Add(newmedia);
             await _dbContext.SaveChangesAsync();
             return RedirectToAction("Index");
@@ -121,14 +123,14 @@ namespace MediaApp.Controllers
             evm.Description = (string)mediaToEdit.Description;
             evm.Date = (DateTime)mediaToEdit.Date;
             evm.Watched = mediaToEdit.Watched;
-            
+
             return View(evm);
 
         }
         [Authorize]
         [ValidateAntiForgeryToken]
         [HttpPost]
-       
+
 
         public async Task<IActionResult> Edit(int id, MediaEditViewModel vm)
         {
@@ -147,6 +149,19 @@ namespace MediaApp.Controllers
             await _dbContext.SaveChangesAsync();
             return (RedirectToAction("Index"));
         }
+
+        [AllowAnonymous]
+        [HttpPut("watched/{id:int}")]
+        public async Task<IActionResult> UpdateWatchStatus([FromRoute]int id)
+        {
+            var media = await _dbContext.medias.FirstOrDefaultAsync(x => x.Id == id);
+            media.Watched = !media.Watched;
+            await _dbContext.SaveChangesAsync();
+            return (RedirectToAction("Index"));
+        }
+
+
+
         [Authorize]
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
