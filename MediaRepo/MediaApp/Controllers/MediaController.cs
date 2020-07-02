@@ -162,7 +162,31 @@ x.Id
             return (RedirectToAction("Index"));
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Detail()
+        {
 
+            List<MediaDetailViewModel> DetailList = new List<MediaDetailViewModel>();
+            IEnumerable<Media> medias = await _dbContext.medias.Include(x => x.Category).ToListAsync();
+            IEnumerable<Media> sortedmedias = medias.OrderBy(x => x.Date);
+            var media = new MediaDetailViewModel();
+
+            foreach (var thing in sortedmedias)
+            {
+                MediaDetailViewModel Det = new MediaDetailViewModel()
+                {
+                    Id = thing.Id,
+                    Category = thing.Category.Name,
+                    Description = (string)thing.Description,
+                    Date = (DateTime)thing.Date,
+                    Rating = (int)thing.Rating,
+                    PhotoUrl = thing.PhotoUrl,
+                    Watched = thing.Watched
+                };
+                return View(Det);
+            }
+            return View(DetailList);
+        }
 
         [Authorize]
         [HttpGet]

@@ -1,90 +1,50 @@
 ﻿@model MediaDetailViewModel;
 
+<br />
+<strong>This is the DETAILS page.</strong>
 
 
 <div class="grid-container">
-
     <div class="Photo">
-
         <img src="@Model.PhotoUrl" class="photo-url" />
-
     </div>
 
     <div class="Description">
-
         @Model.Description
-
     </div>
-
     <div class="Release-Date-Label">
-
         <strong>Release date</strong>
-
     </div>
-
-
     <div class="Category-Label">
-
         <strong>Category</strong>
-
     </div>
-
     <div class="Category-Input">
-
         <p>@Model.Category</p>
-
     </div>
-
-
-    </div>
-
-    <div class="Functions">
-
-        <p>
-
-            <a asp-controller="media" asp-action="edit" asp-route-id="@Model.Id"> Edit</a> |
-
-            <a asp-controller="media" asp-action="delete" asp-route-id="@Model.Id"> Delete</a> |
-
-            <a asp-controller="film" asp-action="index"> Back to film overview</a>
-
-        </p>
-
-    </div>
-
+</div>
+<div class="Functions">
+    <p>
+        <a asp-controller="media" asp-action="detail" asp-route-id="@Model.Id"> Details</a> |
+        <a asp-controller="media" asp-action="edit" asp-route-id="@Model.Id"> Edit</a> |
+        <a asp-controller="media" asp-action="delete" asp-route-id="@Model.Id"> Delete</a> |
+        <a asp-controller="film" asp-action="index"> Back to film overview</a>
+    </p>
 </div>
 
-
-
 <style>
-
     .View-Content form {
         width: 100%;
     }
-
-
-
         .View-Content form input {
             width: 100%;
             height: 100%;
         }
-
-
-
-    .photo-url {
-        max-width: 400px;
-        max-height: 7fr;
-    }
-
-
 
     div .col {
         display: flex;
         flex-direction: column;
         align-items: center;
     }
-
-
 
     .grid-container {
         display: grid;
@@ -94,16 +54,6 @@
         grid-template-areas: "Title Title Title" "Photo Director-Label Director-Input" "Photo Release-Date-Label Release-Date-Input" "Photo Duration-Label Duration-Input" "Photo Genre-Label Genre-Input" "Photo Status-Label Status-Input" "Photo Accessibility-Label Accessibility-Input" "Photo View-Content View-Content" "Functions Functions Functions";
     }
 
-
-
-    .Photo {
-        display: flex;
-        justify-content: center;
-        grid-area: Photo;
-    }
-
-
-
     .Title {
         display: flex;
         justify-content: center;
@@ -112,107 +62,10 @@
         letter-spacing: 2px;
     }
 
-
-
     .Functions {
         grid-area: Functions;
         display: flex;
         justify-content: center;
     }
 
-
-
-    .View-Content {
-        display: flex;
-        justify-content: center;
-        grid-area: View-Content;
-        font-size: 20px;
-        padding-left: 5%;
-    }
-
-
-
-    .Director-Label {
-        grid-area: Director-Label;
-        padding-left: 10%;
-        font-size: 20px;
-    }
-
-
-
-    .Release-Date-Label {
-        grid-area: Release-Date-Label;
-        padding-left: 10%;
-        font-size: 20px;
-    }
-
-
-
-    .Duration-Label {
-        grid-area: Duration-Label;
-        padding-left: 10%;
-        font-size: 20px;
-    }
-
-
-
-    .Genre-Label {
-        grid-area: Genre-Label;
-        padding-left: 10%;
-        font-size: 20px;
-    }
-
-
-
-    .Status-Label {
-        grid-area: Status-Label;
-        padding-left: 10%;
-        font-size: 20px;
-    }
-
-
-
-    .Director-Input {
-        grid-area: Director-Input;
-        font-size: 20px;
-    }
-
-
-
-    .Release-Date-Input {
-        grid-area: Release-Date-Input;
-        font-size: 20px;
-    }
-
-
-
-    .Duration-Input {
-        grid-area: Duration-Input;
-        font-size: 20px;
-    }
-
-
-
-    .Genre-Input {
-        grid-area: Genre-Input;
-        font-size: 20px;
-    }
-
-
-
-    .Status-Input {
-        grid-area: Status-Input;
-        font-size: 20px;
-    }
-
-    .Accessibility-Input {
-        grid-area: Accessibility-Input;
-        font-size: 20px;
-    }
-
-    .Accessibility-Label {
-        grid-area: Accessibility-Label;
-        padding-left: 10%;
-        font-size: 20px;
-    }
 </style>
