@@ -2621,7 +2621,7 @@
   var DefaultWhitelist = {
     // Global attributes allowed on any supplied element below.
     '*': ['class', 'dir', 'id', 'lang', 'role', ARIA_ATTRIBUTE_PATTERN],
-    a: ['target', 'href', 'title', 'rel'],
+    a: ['target', 'href', 'Description', 'rel'],
     area: [],
     b: [],
     br: [],
@@ -2637,7 +2637,7 @@
     h5: [],
     h6: [],
     i: [],
-    img: ['src', 'alt', 'title', 'width', 'height'],
+    img: ['src', 'alt', 'Description', 'width', 'height'],
     li: [],
     ol: [],
     p: [],
@@ -2748,7 +2748,7 @@
   var DefaultType$4 = {
     animation: 'boolean',
     template: 'string',
-    title: '(string|element|function)',
+    Description: '(string|element|function)',
     trigger: 'string',
     delay: '(number|object)',
     html: 'boolean',
@@ -2773,7 +2773,7 @@
     animation: true,
     template: '<div class="tooltip" role="tooltip">' + '<div class="arrow"></div>' + '<div class="tooltip-inner"></div></div>',
     trigger: 'hover focus',
-    title: '',
+    Description: '',
     delay: 0,
     html: false,
     selector: false,
@@ -3082,7 +3082,7 @@
     ;
 
     _proto.isWithContent = function isWithContent() {
-      return Boolean(this.getTitle());
+      return Boolean(this.getDescription());
     };
 
     _proto.addAttachmentClass = function addAttachmentClass(attachment) {
@@ -3096,7 +3096,7 @@
 
     _proto.setContent = function setContent() {
       var tip = this.getTipElement();
-      this.setElementContent($(tip.querySelectorAll(Selector$6.TOOLTIP_INNER)), this.getTitle());
+      this.setElementContent($(tip.querySelectorAll(Selector$6.TOOLTIP_INNER)), this.getDescription());
       $(tip).removeClass(ClassName$6.FADE + " " + ClassName$6.SHOW);
     };
 
@@ -3125,14 +3125,14 @@
       }
     };
 
-    _proto.getTitle = function getTitle() {
-      var title = this.element.getAttribute('data-original-title');
+    _proto.getDescription = function getDescription() {
+      var Description = this.element.getAttribute('data-original-Description');
 
-      if (!title) {
-        title = typeof this.config.title === 'function' ? this.config.title.call(this.element) : this.config.title;
+      if (!Description) {
+        Description = typeof this.config.Description === 'function' ? this.config.Description.call(this.element) : this.config.Description;
       }
 
-      return title;
+      return Description;
     } // Private
     ;
 
@@ -3200,16 +3200,16 @@
           selector: ''
         });
       } else {
-        this._fixTitle();
+        this._fixDescription();
       }
     };
 
-    _proto._fixTitle = function _fixTitle() {
-      var titleType = typeof this.element.getAttribute('data-original-title');
+    _proto._fixDescription = function _fixDescription() {
+      var DescriptionType = typeof this.element.getAttribute('data-original-Description');
 
-      if (this.element.getAttribute('title') || titleType !== 'string') {
-        this.element.setAttribute('data-original-title', this.element.getAttribute('title') || '');
-        this.element.setAttribute('title', '');
+      if (this.element.getAttribute('Description') || DescriptionType !== 'string') {
+        this.element.setAttribute('data-original-Description', this.element.getAttribute('Description') || '');
+        this.element.setAttribute('Description', '');
       }
     };
 
@@ -3304,8 +3304,8 @@
         };
       }
 
-      if (typeof config.title === 'number') {
-        config.title = config.title.toString();
+      if (typeof config.Description === 'number') {
+        config.Description = config.Description.toString();
       }
 
       if (typeof config.content === 'number') {
@@ -3478,7 +3478,7 @@
     SHOW: 'show'
   };
   var Selector$7 = {
-    TITLE: '.popover-header',
+    Description: '.popover-header',
     CONTENT: '.popover-body'
   };
   var Event$7 = {
@@ -3513,7 +3513,7 @@
 
     // Overrides
     _proto.isWithContent = function isWithContent() {
-      return this.getTitle() || this._getContent();
+      return this.getDescription() || this._getContent();
     };
 
     _proto.addAttachmentClass = function addAttachmentClass(attachment) {
@@ -3528,7 +3528,7 @@
     _proto.setContent = function setContent() {
       var $tip = $(this.getTipElement()); // We use append for html objects to maintain js events
 
-      this.setElementContent($tip.find(Selector$7.TITLE), this.getTitle());
+      this.setElementContent($tip.find(Selector$7.Description), this.getDescription());
 
       var content = this._getContent();
 

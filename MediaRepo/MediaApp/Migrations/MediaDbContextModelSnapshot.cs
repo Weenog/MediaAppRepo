@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MediaApp.Migrations
 {
     [DbContext(typeof(MediaDbContext))]
-    partial class mediaDbContextModelSnapshot : ModelSnapshot
+    partial class MediaDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -63,19 +63,15 @@ namespace MediaApp.Migrations
                         {
                             Id = 6,
                             Name = "Other"
-                       
                         });
                 });
 
-            modelBuilder.Entity("MediaApp.Domain.media", b =>
+            modelBuilder.Entity("MediaApp.Domain.Media", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<decimal>("Rating")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -83,11 +79,17 @@ namespace MediaApp.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("PhotoUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PhotoUrl")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("Watched")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -299,7 +301,7 @@ namespace MediaApp.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("MediaApp.Domain.media", b =>
+            modelBuilder.Entity("MediaApp.Domain.Media", b =>
                 {
                     b.HasOne("MediaApp.Domain.Category", "Category")
                         .WithMany()
