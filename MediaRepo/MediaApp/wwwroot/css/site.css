@@ -64,11 +64,12 @@ body {
     background-color: #6B767B;
 }
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+    background-color: #6b767b;
 }
 
 /* 
@@ -120,7 +121,7 @@ body {
 
         background: #888888;
 
-        background: linear-gradient(#2989d8 0%, #1e5799 100%);
+        background: linear-gradient(#2989d8 0%, #6c7b8b 100%);
 
         box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
 
