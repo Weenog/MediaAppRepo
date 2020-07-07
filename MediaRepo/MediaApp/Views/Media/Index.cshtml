@@ -4,7 +4,7 @@
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<MediaApp.Domain.MediaAppIdentity> signInManager
 
-<button type="button" class="btn btn-outline-dark" onclick="location.href='@Url.Action("Create", "Media")'" >Add new Media</button>
+<button type="button" class="btn btn-outline-dark" onclick="location.href='@Url.Action("Create", "Media")'">Add new Media</button>
 @*<a asp-controller="media" asp-action="Create">Add new Media</a>*@
 @{
     if (Model.Count() == 0)
@@ -43,8 +43,7 @@
                     <tr>
                         <td class="info">
                             <label asp-for="@media.Watched"></label>
-                            <input type="checkbox" asp-for="@media.Watched" checked="@(media.Watched == true)" onclick="saveWatchedStatus('@Url.Action("UpdateWatchStatus","media")'
-,@media.Id
+                            <input type="checkbox" asp-for="@media.Watched" checked="@(media.Watched == true)" onclick="saveWatchedStatus('@Url.Action("UpdateWatchStatus","media")',@media.Id
 )">                            <span class="checkmark"></span>
 
                         </td>
@@ -96,19 +95,22 @@
                         <td class="feature">
 
                             <form>
-                                <button asp-controller="media" asp-action="Detail" asp-route-id="@media.Id" class="btn btn-outline-light">Details  </button>
+                                <button asp-controller="media" asp-action="Detail" asp-route-id="@media.Id" class="btn btn-outline-light">View  </button>
                             </form>
                         </td>
                         <td>     </td>
 
                         <td class="feature">
-                           
+
                             <form>
-                                <button asp-controller="media" asp-action="Edit" asp-route-id="@media.Id"  class="btn btn-outline-light"> Edit </button>
+                                <button asp-controller="media" asp-action="Edit" asp-route-id="@media.Id" class="btn btn-outline-light"> Edit </button>
                             </form>
                         </td>
                         <td class="feature">
-                            <a asp-controller="media" asp-action="Delete" asp-route-id="@media.Id">Delete</a>
+                            <form>
+                                <button asp-controller="media" asp-action="Delete" asp-route-id="@media.Id" class="btn btn-outline-light"> Delete </button>
+                            </form>
+
                         </td>
                     </tr>
                 }
@@ -116,71 +118,45 @@
         </table>
     }
 }
-
 <div class="album py-5">
     <div class="container">
 
         <div class="row">
-            <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225"  preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">Unwatched Title1</text></svg>
-                    <div class="card-body">
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+            @foreach (MediaListViewModel media in Model)
+            {
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">Unwatched Title1</text></svg>
+                        <div class="card-body">
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                </div>
+                                <small class="text-muted">Unwatched</small>
                             </div>
-                            <small class="text-muted">Unwatched</small>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">Unwatched Title2</text></svg>
-                    <div class="card-body">
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                            </div>
-                            <small class="text-muted">Unwatched</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225"  preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">Unwatched Title3</text></svg>
-                    <div class="card-body">
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                            </div>
-                            <small class="text-muted">Unwatched</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+            }
         </div>
     </div>
 </div>
 
 
-            
 
 
-            <style>
-                table, td {
-                    border-bottom: 1px solid black;
-                }
 
-                .info {
-                    width: 20vw;
-                }
-            </style>
+
+<style>
+    table, td {
+        border-bottom: 1px solid black;
+    }
+
+    .info {
+        width: 20vw;
+    }
+</style>
 
