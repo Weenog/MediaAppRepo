@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MediaApp.Migrations
 {
-    public partial class Descript : Migration
+    public partial class DB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -173,7 +173,9 @@ namespace MediaApp.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Rating = table.Column<int>(nullable: false),
+                    Title = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
+                    Creator = table.Column<string>(nullable: true),
                     Date = table.Column<DateTime>(nullable: false),
                     CategoryId = table.Column<int>(nullable: false),
                     PhotoUrl = table.Column<string>(nullable: true),

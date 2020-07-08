@@ -2,21 +2,21 @@
 
 namespace MediaApp.Migrations
 {
-    public partial class UseAppIdentity : Migration
+    public partial class Dummy : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "Gender",
-                table: "AspNetUsers",
+                name: "Dummy",
+                table: "medias",
                 nullable: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Gender",
-                table: "AspNetUsers");
+                name: "Dummy",
+                table: "medias");
         }
     }
 }

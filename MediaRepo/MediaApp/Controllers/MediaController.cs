@@ -42,7 +42,9 @@ namespace MediaApp.Controllers
                 {
                     Id = thing.Id,
                     Category = thing.Category.Name,
+                    Title = (string)thing.Title,
                     Description = (string)thing.Description,
+                    Creator = (string)thing.Creator,
                     Date = (DateTime)thing.Date,
                     Rating = (int)thing.Rating,
                     PhotoUrl = thing.PhotoUrl,
@@ -80,7 +82,9 @@ namespace MediaApp.Controllers
             {
                 Rating = cvm.Rating,
                 CategoryId = cvm.CategoryId,
+                Title = cvm.Title,
                 Description = cvm.Description,
+                Creator = cvm.Creator,
                 Date = cvm.Date,
                 PhotoUrl = cvm.PhotoUrl,
                 Watched = cvm.Watched
@@ -120,7 +124,9 @@ namespace MediaApp.Controllers
 
             evm.Rating = (int)mediaToEdit.Rating;
             evm.CategoryId = mediaToEdit.Category.Id;
+            evm.Title = (string)mediaToEdit.Title;
             evm.Description = (string)mediaToEdit.Description;
+            evm.Creator = (string)mediaToEdit.Creator;
             evm.Date = (DateTime)mediaToEdit.Date;
             evm.Watched = mediaToEdit.Watched;
 
@@ -139,7 +145,9 @@ namespace MediaApp.Controllers
 
             changedmedia.Rating = vm.Rating;
             changedmedia.CategoryId = vm.CategoryId;
+            changedmedia.Title= vm.Title;
             changedmedia.Description = vm.Description;
+            changedmedia.Creator = vm.Creator;
             changedmedia.Date = vm.Date;
             changedmedia.Watched = vm.Watched;
 
@@ -177,7 +185,9 @@ x.Id
                 {
                     Id = thing.Id,
                     Category = thing.Category.Name,
+                    Title = (string)thing.Title,
                     Description = (string)thing.Description,
+                    Creator = (string)thing.Creator,
                     Date = (DateTime)thing.Date,
                     Rating = (int)thing.Rating,
                     PhotoUrl = thing.PhotoUrl,
@@ -197,7 +207,9 @@ x.Id
             {
                 Id = mediaToDelete.Id,
                 Rating = (int)mediaToDelete.Rating,
+                Title= (string)mediaToDelete.Title,
                 Description = (string)mediaToDelete.Description,
+                Creator = (string)mediaToDelete.Creator,
                 Date = (DateTime)mediaToDelete.Date,
                 Watched = mediaToDelete.Watched,
             };

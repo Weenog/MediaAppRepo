@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200708084318_DB.cs" />
+    <Compile Remove="Migrations\20200708084318_DB.Designer.cs" />
+    <Compile Remove="Migrations\20200708090006_add-migration Creator.cs" />
+    <Compile Remove="Migrations\20200708090006_add-migration Creator.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.0.0" />
