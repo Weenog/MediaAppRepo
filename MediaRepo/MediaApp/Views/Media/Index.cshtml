@@ -3,7 +3,6 @@
 @model IEnumerable<MediaListViewModel>
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<MediaApp.Domain.MediaAppIdentity> signInManager
-
 @*<a asp-controller="media" asp-action="Create">Add new Media</a>*@
 @{
     if (Model.Count() == 0)
@@ -42,82 +41,80 @@
 
                 @foreach (MediaListViewModel media in Model)
                 {
-                    <tr>
-                        <td class="info">
-                            <label asp-for="@media.Watched"></label>
-                            <input type="checkbox" asp-for="@media.Watched" checked="@(media.Watched == true)" onclick="saveWatchedStatus('@Url.Action("UpdateWatchStatus","media")',@media.Id
+                <tr>
+                    <td class="info">
+                        <label asp-for="@media.Watched"></label>
+                        <input type="checkbox" asp-for="@media.Watched" checked="@(media.Watched == true)" onclick="saveWatchedStatus('@Url.Action("UpdateWatchStatus","media")',@media.Id
 )">                            <span class="checkmark"></span>
 
-                        </td>
+                    </td>
 
 
-                        <td class="info">
-                            <img src="@media.PhotoUrl" style="width: 20px; height: 20px;" />
-                            @media.Category
-                        </td>
+                    <td class="info">
+                        <img src="@media.PhotoUrl" style="width: 20px; height: 20px;" />
+                        @media.Category
+                    </td>
 
-                        <td class="info">
-                            @media.Creator
-                        </td>
+                    <td class="info">
+                        @media.Creator
+                    </td>
 
-                        <td class="info">
-                            @media.Title
-                        </td>
+                    <td class="info">
+                        @media.Title
+                    </td>
 
 
-                        <td class="info">
-                            @media.Date.Year
-                        </td>
-                        <td class="info">
-                            @switch (media.Rating)
-                            {
-                                case 0:<span class="stars-container stars-0">★★★★★</span>
-                                    break;
-                                case 1:<span class="stars-container stars-10">★★★★★</span>
-                                    break;
-                                case 2:<span class="stars-container stars-20">★★★★★</span>
-                                    break;
-                                case 3:<span class="stars-container stars-30">★★★★★</span>
-                                    break;
-                                case 4:<span class="stars-container stars-40">★★★★★</span>
-                                    break;
-                                case 5:<span class="stars-container stars-50">★★★★★</span>
-                                    break;
-                                case 6:<span class="stars-container stars-60">★★★★★</span>
-                                    break;
-                                case 7:<span class="stars-container stars-70">★★★★★</span>
-                                    break;
-                                case 8:<span class="stars-container stars-80">★★★★★</span>
-                                    break;
-                                case 9:<span class="stars-container stars-90">★★★★★</span>
-                                    break;
-                                case 10:<span class="stars-container stars-100">★★★★★</span>
-                                    break;
-                            }
+                    <td class="info">
+                        @media.Date.Year
+                    </td>
+                    <td class="info">
+                        @switch (media.Rating)
+                        {
+                            case 0:<span class="stars-container stars-0">★★★★★</span>
+                                break;
+                            case 1:<span class="stars-container stars-10">★★★★★</span>
+                                break;
+                            case 2:<span class="stars-container stars-20">★★★★★</span>
+                                break;
+                            case 3:<span class="stars-container stars-30">★★★★★</span>
+                                break;
+                            case 4:<span class="stars-container stars-40">★★★★★</span>
+                                break;
+                            case 5:<span class="stars-container stars-50">★★★★★</span>
+                                break;
+                            case 6:<span class="stars-container stars-60">★★★★★</span>
+                                break;
+                            case 7:<span class="stars-container stars-70">★★★★★</span>
+                                break;
+                            case 8:<span class="stars-container stars-80">★★★★★</span>
+                                break;
+                            case 9:<span class="stars-container stars-90">★★★★★</span>
+                                break;
+                            case 10:<span class="stars-container stars-100">★★★★★</span>
+                                break;
+                        }
 
-                        </td>
+                    </td>
+                    <form>
                         <td class="btn-group" role="group" aria-label="Basic example">
-                            <form>
-                                <button asp-controller="media" asp-action="Detail" asp-route-id="@media.Id" class="btn btn-outline-light">View  </button>
-                            </form>
-                            <form>
-                                <button asp-controller="media" asp-action="Edit" asp-route-id="@media.Id" class="btn btn-outline-light"> Edit </button>
-                            </form>
-                            <form>
-                                <button asp-controller="media" asp-action="Delete" asp-route-id="@media.Id" class="btn btn-outline-light"> Delete </button>
-                            </form>
 
+                            <button asp-controller="media" asp-action="Detail" asp-route-id="@media.Id" class="btn btn-outline-light">View  </button>
+
+                            <button asp-controller="media" asp-action="Edit" asp-route-id="@media.Id" class="btn btn-outline-light"> Edit </button>
+
+                            <button asp-controller="media" asp-action="Delete" asp-route-id="@media.Id" class="btn btn-outline-light"> Delete </button>
                         </td>
+                    </form>
 
 
-                    </tr>
+                </tr>
                 }
             </tbody>
         </table>
     }
 
     <hr class="mb-4">
-    <button class="btn btn-outline-light btn-dark btn-block" onclick="location.href='@Url.Action("Create", "Media")'">Add New Media</button>
+    <button class="btn btn-outline-light btn-dark btn-block" onclick="location.href='@Url.Action("Create", "Media")'">Add New Media +</button>
 }
 <div class="album py-5">
     <div class="container">
@@ -132,15 +129,31 @@
 
                             <p class="card-text">@media.Category by @media.Creator <p style="color:dimgrey">@media.Description </p>
                             <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">Unwatched</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                <form>
+                                    <div class="btn-group">
+
+                                        <button asp-controller="media" asp-action="Detail" asp-route-id="@media.Id" class="btn btn-sm btn-outline-secondary">View</button>
+
+                                        <button asp-controller="media" asp-action="Edit" asp-route-id="@media.Id" class="btn btn-sm btn-outline-secondary">Edit</button>
+
+                                    </div>
+                                </form>
+                                <small class="text-muted">@if (media.Watched != true)
+                                {<p>Unwatched</p>}
+                                else
+                                {<p>Watched</p>}</small>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
             }
         </div>
     </div>
