@@ -1,7 +1,7 @@
 ﻿@model MediaDetailViewModel;
 
 <br />
-<strong>This is the DETAILS page.</strong>
+<strong></strong>
 
 
 <div class="grid-container">
@@ -16,22 +16,13 @@
     <div class="Description">
         @Model.Description
     </div>
-    <div class="Release-Date-Label">
-        <strong>Release date</strong>
-    </div>
-    <div class="Category-Label">
-        <strong>Category</strong>
-    </div>
-    <div class="Category-Input">
-        <p>@Model.Category</p>
-    </div>
 </div>
 <div class="Functions">
     <p>
-        <a asp-controller="media" asp-action="detail" asp-route-id="@Model.Id"> Details</a> |
+        <a asp-controller="media" asp-action="detail" asp-route-id="@Model.Id">Review</a> |
         <a asp-controller="media" asp-action="edit" asp-route-id="@Model.Id"> Edit</a> |
         <a asp-controller="media" asp-action="delete" asp-route-id="@Model.Id"> Delete</a> |
-        <a asp-controller="film" asp-action="index"> Back to film overview</a>
+        <a asp-controller="media" asp-action="index"> Back to media overview</a>
     </p>
 </div>
 
@@ -53,8 +44,7 @@
     .grid-container {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-        gap: 1px 1px;
+        grid-template-rows: 1fr 1fr 1fr;
         grid-template-areas: "Title Title Title" "Photo Director-Label Director-Input" "Photo Release-Date-Label Release-Date-Input" "Photo Duration-Label Duration-Input" "Photo Genre-Label Genre-Input" "Photo Status-Label Status-Input" "Photo Accessibility-Label Accessibility-Input" "Photo View-Content View-Content" "Functions Functions Functions";
     }
 
