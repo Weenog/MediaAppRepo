@@ -171,32 +171,40 @@ x.Id
         }
 
         [HttpGet]
-        public async Task<IActionResult> Detail()
+        [AllowAnonymous]
+        public async Task<IActionResult>Detail(int Id)
         {
-
-            List<MediaDetailViewModel> DetailList = new List<MediaDetailViewModel>();
-            IEnumerable<Media> medias = await _dbContext.medias.Include(x => x.Category).ToListAsync();
-            IEnumerable<Media> sortedmedias = medias.OrderBy(x => x.Date);
-            var media = new MediaDetailViewModel();
-
-            foreach (var thing in sortedmedias)
+            Media mediaToDetail = await _dbContext.medias.Include(x => x.Category).FirstOrDefaultAsync(x => x.Id == Id);
+            MediaDetailViewModel vm = new MediaDetailViewModel()
             {
-                MediaDetailViewModel Det = new MediaDetailViewModel()
-                {
-                    Id = thing.Id,
-                    Category = thing.Category.Name,
-                    Title = (string)thing.Title,
-                    Description = (string)thing.Description,
-                    Creator = (string)thing.Creator,
-                    Date = (DateTime)thing.Date,
-                    Rating = (int)thing.Rating,
-                    PhotoUrl = thing.PhotoUrl,
-                    Watched = thing.Watched
-                };
-                return View(Det);
-            }
-            return View(DetailList);
+                Id = mediaToDetail.Id,
+                Category = mediaToDetail.Category.Name,
+                Title = (string)mediaToDetail.Title,
+                Description = (string)mediaToDetail.Description,
+                Creator = (string)mediaToDetail.Creator,
+                Date = (DateTime)mediaToDetail.Date,
+                Rating = (int)mediaToDetail.Rating,
+                PhotoUrl = mediaToDetail.PhotoUrl,
+                Watched = mediaToDetail.Watched
+            };
+
+            return View(vm);
+
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         [Authorize]
         [HttpGet]
