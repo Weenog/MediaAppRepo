@@ -239,7 +239,6 @@ x.Id
 
             _dbContext.Reviews.Add(new Review()
             {
-
                 UserId = User.FindFirstValue(ClaimTypes.NameIdentifier),
                 Comment = vm.Comment,
                 PublishedDate = DateTime.Now,
