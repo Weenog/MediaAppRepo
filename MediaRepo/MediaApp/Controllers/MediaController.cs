@@ -228,10 +228,10 @@ x.Id
         //{
         //    string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
         //    IEnumerable<Media> mediaFromDb = await _dbContext.medias
-        //        .Where(movie => Media.UserId == userId
+        //        .Where(Media => Media.UserId == userId
         //        .ToListAsync();
         //}
-            public async Task Review(int Id, string review)
+        public async Task Review(int Id, string review)
         {
             Review NewReview = new Review();
            
