@@ -3,33 +3,95 @@
 <br />
 <strong></strong>
 
+<div class="jumbotron">
+    <div class="container">
+        <div class="Title">
+            @Model.Title
+        </div>
 
-<div class="grid-container">
-    <div class="Photo">
-        <img src="@Model.PhotoUrl" class="photo-url" />
+
+    </div>
+    <div class="grid-container">
+        <div class="Photo">
+            <img src="@Model.PhotoUrl" class="photo-url" />
+        </div>
+
+        <div class="Description">
+            @Model.Description
+        </div>
     </div>
 
-    <div class="Title">
-        @Model.Title
-    </div>
+  
 
-    <div class="Description">
-        @Model.Description
+    <div class="Functions">
+        <p>|
+            <a asp-controller="media" asp-action="edit" asp-route-id="@Model.Id"> Edit</a> |
+            <a asp-controller="media" asp-action="delete" asp-route-id="@Model.Id"> Delete</a> |
+            <a asp-controller="media" asp-action="index">Media Index</a>
+        </p>
     </div>
 </div>
-<div class="Functions">
-    <p>
-        <a asp-controller="media" asp-action="detail" asp-route-id="@Model.Id">Review</a> |
-        <a asp-controller="media" asp-action="edit" asp-route-id="@Model.Id"> Edit</a> |
-        <a asp-controller="media" asp-action="delete" asp-route-id="@Model.Id"> Delete</a> |
-        <a asp-controller="media" asp-action="index"> Back to media overview</a>
-    </p>
+
+<div class="my-3 p-3 btn-group-lg rounded shadow-sm">
+
+    <div class="form-group">
+        <label asp-for="Reviews">Review this Title (@@username)</label>
+        <textarea asp-for="Reviews" class="form-control" rows="2"></textarea>
+        <span class="stars-container stars-0" style="font-size:25px; position:relative; left:77%;">★★★★★</span>
+        <button class="btn btn-outline-light btn btn" style="position:relative; left:77%; background-color:#6b767b"
+ onclick="location.href='@Url.Action("Create", "Review")'">Submit Review</button>
+    </div>
+    <h6 class="border-bottom border-gray pb-2 mb-0">Recent Reviews</h6>
+    <div class="media text-muted pt-3">
+        <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#53767b" /><text x="50%" y="50%" fill="#53767b" dy=".3em">32x32</text></svg>
+        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <strong class="d-block text-gray-dark">
+                @@username
+                <span class="stars-container stars-70" style="position:relative; left:85%;">★★★★★</span>
+            </strong>
+            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+        </p>
+    </div>
+    <div class="media text-muted pt-3">
+        <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#b9767b" /><text x="50%" y="50%" fill="#b9767b" dy=".3em">32x32</text></svg>
+        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <strong class="d-block text-gray-dark">
+                @@username
+                <span class="stars-container stars-60" style="position:relative; left:85%;">★★★★★</span>
+            </strong>
+            <br>
+            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+        </p>
+    </div>
+    <div class="media text-muted pt-3">
+        <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32"  preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#3b677a" /><text x="50%" y="50%" fill="black" dy=".3em">32x32</text></svg>
+        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <strong class="d-block text-light-dark">
+                @@username
+                <span class="stars-container stars-30" style="position:relative; left:85%;">★★★★★</span>
+            </strong>
+            <br>
+            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+        </p>
+    </div>
+    <small class="d-block text-right mt-3">
+        <a href="#">All reviews</a>
+    </small>
 </div>
 
 <style>
+    .jumbotron {
+        background-color: #829096;
+    }
+
+    .my-3{
+        background-color: #829096;
+
+    }
     .View-Content form {
         width: 100%;
     }
+
         .View-Content form input {
             width: 100%;
             height: 100%;
@@ -61,5 +123,4 @@
         display: flex;
         justify-content: center;
     }
-
 </style>

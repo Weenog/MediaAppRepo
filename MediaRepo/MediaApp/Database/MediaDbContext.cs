@@ -22,6 +22,9 @@ namespace MediaApp.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Review>().HasKey(
+                x => new { x.UserId, x.MediaId }
+);
             modelBuilder.Entity<Category>().HasData(
                 new Category()
                 {
@@ -64,6 +67,7 @@ namespace MediaApp.Database
 
         public DbSet<Media> medias { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Review> Reviews { get; set; }
 
     }
 }

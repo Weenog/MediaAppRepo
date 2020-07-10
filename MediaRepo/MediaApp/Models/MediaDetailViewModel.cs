@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MediaApp.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,7 +20,8 @@ namespace MediaApp.Models
         public int CategoryId { get; set; }
         public string PhotoUrl { get; set; }
         public bool Watched { get; set; }
-
+        public List<Review> Reviews { get; set; } = new List<Review>();
+        
 
     }
 

@@ -16,7 +16,7 @@
                         media
                     </th>
                     <th>
-                        Date
+                        Creator
                     </th>
                     <th>
                         Rating
@@ -26,13 +26,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr><strong>Highest media</strong></tr>
+                <tr><strong>Highest rated</strong></tr>
                 <tr>
                     <td class="info">
                         @Model.Highestrating.Description
                     </td>
                     <td class="info">
-                        @Model.Highestrating.Date
+                        @Model.Highestrating.Creator
                     </td>
                     <td class="info">
                         @Model.Highestrating.Rating
@@ -47,7 +47,7 @@
                         media
                     </th>
                     <th>
-                        Date
+                        Creator
                     </th>
                     <th>
                         Rating
@@ -57,13 +57,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr><strong>Lowest media</strong></tr>
+                <tr><strong>Lowest rated</strong></tr>
                 <tr>
                     <td class="info">
                         @Model.Lowestmedia.Description
                     </td>
                     <td class="info">
-                        @Model.Lowestmedia.Date
+                        @Model.Lowestmedia.Creator
                     </td>
                     <td class="info">
                         @Model.Lowestmedia.Rating
@@ -71,109 +71,7 @@
                 </tr>
             </tbody>
         </table>
-        <table>
-            <thead>
-                <tr>
-                    <th>
-                        Date
-                    </th>
-                    <th>
-                        Rating
-                    </th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><strong>Most Expensive Date</strong></tr>
-                <tr>
-                    <td class="info">
-                        @Model.HighestDaymedia.Date.ToShortDateString()
-                    </td>
-                    <td class="info">
-                        @Model.HighestDaymedia.Rating
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table>
-            <thead>
-                <tr>
-                    <th>
-                        Month
-                    </th>
-                    <th>
-                        Total Rating
-                    </th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><strong>Monthly medias</strong></tr>
-                @foreach (var month in Model.Monthlymedias)
-                {
-                    <tr>
-                        <td class="info">
-                            @month.Date.ToString("MMMM", new System.Globalization.CultureInfo("en-US", true))
-                        </td>
-                        <td class="info">
-                            @month.Rating
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-        <table>
-            <thead>
-                <tr>
-                    <th>
-                        Category
-                    </th>
-                    <th>
-                        Rating
-                    </th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><strong>Most Expensive Category</strong></tr>
-                <tr>
-                    <td class="info">
-                        @Model.MostPopular.Category
-                    </td>
-                    <td class="info">
-                        @Model.MostPopular.Rating
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table>
-            <thead>
-                <tr>
-                    <th>
-                        Category
-                    </th>
-                    <th>
-                        Rating
-                    </th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><strong>Least Expensive Category</strong></tr>
-                <tr>
-                    <td class="info">
-                        @Model.LeastPopular.Category
-                    </td>
-                    <td class="info">
-                        @Model.LeastPopular.Rating
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        
     }
 }
 

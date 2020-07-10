@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using MediaApp.Database;
 using MediaApp.Domain;
@@ -145,7 +146,7 @@ namespace MediaApp.Controllers
 
             changedmedia.Rating = vm.Rating;
             changedmedia.CategoryId = vm.CategoryId;
-            changedmedia.Title= vm.Title;
+            changedmedia.Title = vm.Title;
             changedmedia.Description = vm.Description;
             changedmedia.Creator = vm.Creator;
             changedmedia.Date = vm.Date;
@@ -172,7 +173,7 @@ x.Id
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult>Detail(int Id)
+        public async Task<IActionResult> Detail(int Id)
         {
             Media mediaToDetail = await _dbContext.medias.Include(x => x.Category).FirstOrDefaultAsync(x => x.Id == Id);
             MediaDetailViewModel vm = new MediaDetailViewModel()
@@ -187,22 +188,9 @@ x.Id
                 PhotoUrl = mediaToDetail.PhotoUrl,
                 Watched = mediaToDetail.Watched
             };
-
             return View(vm);
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -215,7 +203,7 @@ x.Id
             {
                 Id = mediaToDelete.Id,
                 Rating = (int)mediaToDelete.Rating,
-                Title= (string)mediaToDelete.Title,
+                Title = (string)mediaToDelete.Title,
                 Description = (string)mediaToDelete.Description,
                 Creator = (string)mediaToDelete.Creator,
                 Date = (DateTime)mediaToDelete.Date,
@@ -232,6 +220,35 @@ x.Id
             _dbContext.medias.Remove(_dbContext.medias.Find(id));
             await _dbContext.SaveChangesAsync();
             return (RedirectToAction("Index"));
+        }
+
+        //[HttpGet]
+        //[Authorize]
+        //public async Task<IActionResult> Review()
+        //{
+        //    string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        //    IEnumerable<Media> mediaFromDb = await _dbContext.medias
+        //        .Where(movie => Media.UserId == userId
+        //        .ToListAsync();
+        //}
+            public async Task Review(int Id, string review)
+        {
+            Review NewReview = new Review();
+           
+                _dbContext.Reviews.Add(new Review()
+                {
+
+                    UserId = User.FindFirstValue(ClaimTypes.NameIdentifier),
+                    Comment = NewReview.Comment,
+                    PublishedDate = DateTime.Now,
+                    MediaId = Id,
+                    UserScore = NewReview.UserScore
+
+                });
+                await _dbContext.SaveChangesAsync();
+               
+               
+            
         }
     }
 }
