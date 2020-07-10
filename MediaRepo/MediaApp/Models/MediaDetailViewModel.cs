@@ -21,7 +21,7 @@ namespace MediaApp.Models
         public string PhotoUrl { get; set; }
         public bool Watched { get; set; }
         public List<Review> Reviews { get; set; } = new List<Review>();
-        
+        public string Comment { get; set; }
 
     }
 

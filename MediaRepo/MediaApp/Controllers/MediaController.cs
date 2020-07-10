@@ -192,8 +192,6 @@ x.Id
 
         }
 
-
-
         [Authorize]
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
@@ -222,33 +220,35 @@ x.Id
             return (RedirectToAction("Index"));
         }
 
-        //[HttpGet]
-        //[Authorize]
-        //public async Task<IActionResult> Review()
-        //{
-        //    string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-        //    IEnumerable<Media> mediaFromDb = await _dbContext.medias
-        //        .Where(Media => Media.UserId == userId
-        //        .ToListAsync();
-        //}
-        public async Task Review(int Id, string review)
+        //    [HttpGet]
+        //    [Authorize]
+        //    //public async Task<IActionResult>AddReview(MediaDetailViewModel vm)
+        //    //{
+        //    //    Review NewReview = new Review();
+        //    //    string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        //    //    IEnumerable<Review>reviewFromDb = await _dbContext.Reviews
+        //    //        .Where(Review => NewReview.UserId == userId
+        //    //        .ToListAsync();
+        //    //    return (RedirectToAction("Detail"));
+        //    //}
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult>Review(int Id, MediaDetailViewModel vm)
         {
-            Review NewReview = new Review();
-           
-                _dbContext.Reviews.Add(new Review()
-                {
 
-                    UserId = User.FindFirstValue(ClaimTypes.NameIdentifier),
-                    Comment = NewReview.Comment,
-                    PublishedDate = DateTime.Now,
-                    MediaId = Id,
-                    UserScore = NewReview.UserScore
+            _dbContext.Reviews.Add(new Review()
+            {
 
-                });
+                UserId = User.FindFirstValue(ClaimTypes.NameIdentifier),
+                Comment = vm.Comment,
+                PublishedDate = DateTime.Now,
+                MediaId = Id,
+                UserScore = 5
+            }) ;
+         
                 await _dbContext.SaveChangesAsync();
-               
-               
-            
+            return (RedirectToAction("Detail", new {Id=Id}));
         }
     }
 }
