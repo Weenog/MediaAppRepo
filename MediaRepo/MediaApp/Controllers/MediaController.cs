@@ -178,7 +178,7 @@ x.Id
         {
             Media mediaToDetail = await _dbContext.medias.Include(x => x.Category).FirstOrDefaultAsync(x => x.Id == Id);
             var reviews = await _dbContext.Reviews.Where(x => x.MediaId == Id).ToListAsync();
-            
+
 
             MediaDetailViewModel vm = new MediaDetailViewModel()
             {
@@ -239,7 +239,7 @@ x.Id
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult>Review(int Id, MediaDetailViewModel vm)
+        public async Task<IActionResult> Review(int Id, MediaDetailViewModel vm)
         {
 
             _dbContext.Reviews.Add(new Review()
@@ -249,31 +249,48 @@ x.Id
                 PublishedDate = DateTime.Now,
                 MediaId = Id,
                 UserScore = 5
-            }) ;
-         
-                await _dbContext.SaveChangesAsync();
-            return (RedirectToAction("Detail", new {Id=Id}));
+            });
+
+            await _dbContext.SaveChangesAsync();
+            return (RedirectToAction("Detail", new { Id = Id }));
         }
 
-        ////somethings not right here. ....do you need to create a mediaReviewViewModel?
-        //[HttpGet]
-        //[AllowAnonymous]
-        //public async Task<IActionResult> Review(int Id)
-        //{
-        //    Review mediaToReview = await _dbContext.Reviews.FindAsync(Id);
-        //    Review vm = new Review()
-        //    {
-        //        Comment = mediaToReview.Comment,
-        //        PublishedDate = mediaToReview.PublishedDate,
-        //        MediaId = mediaToReview.MediaId,
-        //        UserId = mediaToReview.UserId,
-        //        UserScore = mediaToReview.UserScore,
-        //    };
-        //    return View(vm);
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> DeleteReview(string userId, int mediaId)
+        {
+            Review ReviewToDelete = await _dbContext.Reviews.Where(x => x.MediaId == mediaId && x.UserId == userId).FirstOrDefaultAsync();
+            //(x => x.MediaId == Id).ToListAsync()
+            //.Where(MediaId => Review.MediaId) = MediaId || UserId => Review.UserId)
 
-        //}
+            _dbContext.Reviews.Remove(ReviewToDelete);
+            await _dbContext.SaveChangesAsync();
+            return View("Index");
+        }
     }
 }
+        
+        //Review rvm = new Review()
+        //{
+        //    Comment = ReviewToDelete.Comment,
+        //    PublishedDate = ReviewToDelete.PublishedDate,
+        //    MediaId = ReviewToDelete.MediaId,
+        //    UserId = ReviewToDelete.UserId,
+        //    UserScore = ReviewToDelete.UserScore,
+        //};
+
+        //return View(rvm);
+        //}
+        //[Authorize]
+        //[ValidateAntiForgeryToken]
+        //[HttpPost]
+        //public async Task<IActionResult> ConfirmDeleteReview(string UserId)
+        //{
+        //    _dbContext.Reviews.Remove(_dbContext.Reviews.Find(UserId));
+        //    await _dbContext.SaveChangesAsync();
+        //    return (RedirectToAction("Index"));
+        //}
+
 
 
 
