@@ -60,13 +60,17 @@
                 <span class="stars-container stars-70" style="position:relative; left:85%;">★★★★★</span>
                 <h>@review.Comment</h>
             </strong>
-            <form>
-                <td class="btn-group" role="group" aria-label="Basic example">
-                    <button asp-controller="media" asp-action="deletereview" asp-route-id="@review.MediaId, @review.UserId" class="btn btn-outline-light"> Delete </button>
-                </td>
-            </form>
-
         </p>
+        <form>
+            <td class="btn-group" role="group" aria-label="Basic example">
+                <a asp-controller="media" asp-action="deletereview" asp-route-Mediaid="@review.MediaId"  class="btn btn-outline-light">Remove</a>
+            </td>
+            <td class="btn-group" role="group" aria-label="Basic example">
+                <a asp-controller="media" asp-action="editreview" asp-route-id="@review.MediaId" class="btn btn-outline-light">Edit</a>
+            </td>
+        </form>
+
+        
     }
 </div>
 

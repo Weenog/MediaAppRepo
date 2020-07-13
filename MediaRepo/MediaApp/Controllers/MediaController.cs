@@ -225,18 +225,7 @@ x.Id
             return (RedirectToAction("Index"));
         }
 
-        //    [HttpGet]
-        //    [Authorize]
-        //    //public async Task<IActionResult>AddReview(MediaDetailViewModel vm)
-        //    //{
-        //    //    Review NewReview = new Review();
-        //    //    string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-        //    //    IEnumerable<Review>reviewFromDb = await _dbContext.Reviews
-        //    //        .Where(Review => NewReview.UserId == userId
-        //    //        .ToListAsync();
-        //    //    return (RedirectToAction("Detail"));
-        //    //}
-
+    
         [HttpPost]
         [Authorize]
         public async Task<IActionResult> Review(int Id, MediaDetailViewModel vm)
@@ -257,39 +246,28 @@ x.Id
 
         [Authorize]
         [HttpGet]
-        public async Task<IActionResult> DeleteReview(string userId, int mediaId)
+        public async Task<IActionResult> DeleteReview(int mediaId)
         {
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             Review ReviewToDelete = await _dbContext.Reviews.Where(x => x.MediaId == mediaId && x.UserId == userId).FirstOrDefaultAsync();
-            //(x => x.MediaId == Id).ToListAsync()
-            //.Where(MediaId => Review.MediaId) = MediaId || UserId => Review.UserId)
-
             _dbContext.Reviews.Remove(ReviewToDelete);
             await _dbContext.SaveChangesAsync();
-            return View("Index");
+            return (RedirectToAction("Index"));
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> EditReview(int mediaId, MediaDetailViewModel vm)
+        {
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            Review ReviewToEdit = await _dbContext.Reviews.Where(x => x.MediaId == mediaId && x.UserId == userId).FirstOrDefaultAsync();
+            ReviewToEdit.Comment = vm.Comment;
+            await _dbContext.SaveChangesAsync();
+            return (RedirectToAction("Index"));
         }
     }
 }
         
-        //Review rvm = new Review()
-        //{
-        //    Comment = ReviewToDelete.Comment,
-        //    PublishedDate = ReviewToDelete.PublishedDate,
-        //    MediaId = ReviewToDelete.MediaId,
-        //    UserId = ReviewToDelete.UserId,
-        //    UserScore = ReviewToDelete.UserScore,
-        //};
-
-        //return View(rvm);
-        //}
-        //[Authorize]
-        //[ValidateAntiForgeryToken]
-        //[HttpPost]
-        //public async Task<IActionResult> ConfirmDeleteReview(string UserId)
-        //{
-        //    _dbContext.Reviews.Remove(_dbContext.Reviews.Find(UserId));
-        //    await _dbContext.SaveChangesAsync();
-        //    return (RedirectToAction("Index"));
-        //}
 
 
 
