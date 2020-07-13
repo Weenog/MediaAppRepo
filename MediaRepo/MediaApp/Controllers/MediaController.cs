@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using MediaApp.Database;
 using MediaApp.Domain;
@@ -176,6 +177,9 @@ x.Id
         public async Task<IActionResult> Detail(int Id)
         {
             Media mediaToDetail = await _dbContext.medias.Include(x => x.Category).FirstOrDefaultAsync(x => x.Id == Id);
+            var reviews = await _dbContext.Reviews.Where(x => x.MediaId == Id).ToListAsync();
+            
+
             MediaDetailViewModel vm = new MediaDetailViewModel()
             {
                 Id = mediaToDetail.Id,
@@ -186,7 +190,8 @@ x.Id
                 Date = (DateTime)mediaToDetail.Date,
                 Rating = (int)mediaToDetail.Rating,
                 PhotoUrl = mediaToDetail.PhotoUrl,
-                Watched = mediaToDetail.Watched
+                Watched = mediaToDetail.Watched,
+                Reviews = reviews
             };
             return View(vm);
 
@@ -249,6 +254,24 @@ x.Id
                 await _dbContext.SaveChangesAsync();
             return (RedirectToAction("Detail", new {Id=Id}));
         }
+
+        ////somethings not right here. ....do you need to create a mediaReviewViewModel?
+        //[HttpGet]
+        //[AllowAnonymous]
+        //public async Task<IActionResult> Review(int Id)
+        //{
+        //    Review mediaToReview = await _dbContext.Reviews.FindAsync(Id);
+        //    Review vm = new Review()
+        //    {
+        //        Comment = mediaToReview.Comment,
+        //        PublishedDate = mediaToReview.PublishedDate,
+        //        MediaId = mediaToReview.MediaId,
+        //        UserId = mediaToReview.UserId,
+        //        UserScore = mediaToReview.UserScore,
+        //    };
+        //    return View(vm);
+
+        //}
     }
 }
 

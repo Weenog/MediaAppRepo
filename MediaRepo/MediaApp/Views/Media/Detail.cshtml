@@ -1,147 +1,143 @@
 ﻿@model MediaDetailViewModel;
 
-    <br />
-    <strong></strong>
+<br />
+<strong></strong>
 
-    <div class="jumbotron">
-        <div class="container">
-            <div class="Title">
-                @Model.Title
-            </div>
-
-
-        </div>
-        <div class="grid-container">
-            <div class="Photo">
-                <img src="@Model.PhotoUrl" class="photo-url" />
-            </div>
-
-            <div class="Description">
-                @Model.Description
-            </div>
+<div class="jumbotron">
+    <div class="container">
+        <div class="Title">
+            @Model.Title
         </div>
 
 
+    </div>
+    <div class="grid-container">
+        <div class="Photo">
+            <img src="@Model.PhotoUrl" class="photo-url" />
+        </div>
 
-        <div class="Functions">
-            <p>
-                |
-                <a asp-controller="media" asp-action="edit" asp-route-id="@Model.Id"> Edit</a> |
-                <a asp-controller="media" asp-action="delete" asp-route-id="@Model.Id"> Delete</a> |
-                <a asp-controller="media" asp-action="index">Media Index</a>
+        <div class="Description">
+            @Model.Description
+        </div>
+    </div>
+
+
+
+    <div class="Functions">
+        <p>
+            |
+            <a asp-controller="media" asp-action="edit" asp-route-id="@Model.Id"> Edit</a> |
+            <a asp-controller="media" asp-action="delete" asp-route-id="@Model.Id"> Delete</a> |
+            <a asp-controller="media" asp-action="index">Media Index</a>
+        </p>
+    </div>
+</div>
+
+<div class="my-3 p-3 btn-group-lg rounded shadow-sm">
+
+    <form asp-controller="media" asp-action="review" asp-route-id="@Model.Id" method="post">
+        <div class="form-group">
+            <label asp-for="Comment">Review this Title (@@username)</label>
+            <textarea asp-for="Comment" class="form-control" rows="2"></textarea>
+
+            <span class="stars-container stars-0" style="font-size:25px; position:relative; left:77%;">★★★★★</span>
+            <button class="btn btn-outline-light btn btn" style="position:relative; left:77%; background-color:#6b767b"
+                    type="submit">
+                Submit Review
+            </button>
+    </form>
+</div>
+<h6 class="border-bottom border-gray pb-2 mb-0">Recent Reviews</h6>
+<div class="media text-muted pt-3">
+
+    <h>@Model.Reviews.Count Reviews</h>
+    @*   FAILED ATTEMPTS trying to-->foreach Review in Reviews(for this media), print its comment.)
+        @foreach (MediaApp.Domain.Review review in Model.Reviews)
+        @foreach (var review in model.reviews)
+        @
+        @IEnumerable<Review>{*@
+    @foreach (MediaApp.Domain.Review review in Model.Reviews)
+    {
+        <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><title>Placeholder</title><rect width="100%" height="100%" fill="#53767b" /><text x="50%" y="50%" fill="#53767b" dy=".3em"></text></svg>
+        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <strong class="d-block text-gray-dark">
+                @@username
+                <span class="stars-container stars-70" style="position:relative; left:85%;">★★★★★</span>
+            </strong>
+            <h>@review.Comment</h>
+        </p>
+    }
+</div>
+
+@*<div class="media text-muted pt-3">
+            <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><title>Placeholder</title><rect width="100%" height="100%" fill="#b9767b" /><text x="50%" y="50%" fill="#b9767b" dy=".3em"></text></svg>
+            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <strong class="d-block text-gray-dark">
+                    @@username
+                    <span class="stars-container stars-60" style="position:relative; left:85%;">★★★★★</span>
+                </strong>
+                <br>
+                Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
             </p>
         </div>
-    </div>
+        <div class="media text-muted pt-3">
+            <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32"  preserveAspectRatio="xMidYMid slice" focusable="false" role="img" ><title>Placeholder</title><rect width="100%" height="100%" fill="#3b677a" /><text x="50%" y="50%" fill="black" dy=".3em"></text></svg>
+            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <strong class="d-block text-light-dark">
+                    @@username
+                    <span class="stars-container stars-30" style="position:relative; left:85%;">★★★★★</span>
+                </strong>
+                <br>
+                Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+            </p>
+        </div>
+        <small class="d-block text-right mt-3">
+            <a href="#">All reviews</a>
+        </small>
+    </div>*@
 
-    <div class="my-3 p-3 btn-group-lg rounded shadow-sm">
+<style>
+    .jumbotron {
+        background-color: #829096;
+    }
 
-        <form asp-controller="media" asp-action="review" asp-route-id="@Model.Id" method="post">
-            <div class="form-group">
-                <label asp-for="Comment">Review this Title (@@username)</label>
-                <textarea asp-for="Comment" class="form-control" rows="2"></textarea>
+    .my-3 {
+        background-color: #829096;
+    }
 
-                <span class="stars-container stars-0" style="font-size:25px; position:relative; left:77%;">★★★★★</span>
-                <button class="btn btn-outline-light btn btn" style="position:relative; left:77%; background-color:#6b767b"
-                        type="submit">
-                    Submit Review
-                </button>
-        </form>
-    </div>
-   <h6 class="border-bottom border-gray pb-2 mb-0">Recent Reviews</h6>
-   <div class="media text-muted pt-3">
+    .View-Content form {
+        width: 100%;
+    }
 
-       
-       @*   FAILED ATTEMPTS
-           
-           @foreach (MediaApp.Domain.Review review in Model.Reviews)
-       @foreach (var review in Model.Reviews)
-       @foreach (var text in Model.Reviews)
-       IEnumerable<MediaApp.Domain.Review>*@
-
-       @foreach (var review in Model)
-       {
-           <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><title>Placeholder</title><rect width="100%" height="100%" fill="#53767b" /><text x="50%" y="50%" fill="#53767b" dy=".3em"></text></svg>
-
-           <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-
-               <strong class="d-block text-gray-dark">
-                   @@username
-                   <span class="stars-container stars-70" style="position:relative; left:85%;">★★★★★</span>
-               </strong>
-               @Model.Comment
-           </p>
-       }
-   </div>
-
-    @*<div class="media text-muted pt-3">
-                <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><title>Placeholder</title><rect width="100%" height="100%" fill="#b9767b" /><text x="50%" y="50%" fill="#b9767b" dy=".3em"></text></svg>
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <strong class="d-block text-gray-dark">
-                        @@username
-                        <span class="stars-container stars-60" style="position:relative; left:85%;">★★★★★</span>
-                    </strong>
-                    <br>
-                    Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-                </p>
-            </div>
-            <div class="media text-muted pt-3">
-                <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32"  preserveAspectRatio="xMidYMid slice" focusable="false" role="img" ><title>Placeholder</title><rect width="100%" height="100%" fill="#3b677a" /><text x="50%" y="50%" fill="black" dy=".3em"></text></svg>
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <strong class="d-block text-light-dark">
-                        @@username
-                        <span class="stars-container stars-30" style="position:relative; left:85%;">★★★★★</span>
-                    </strong>
-                    <br>
-                    Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-                </p>
-            </div>
-            <small class="d-block text-right mt-3">
-                <a href="#">All reviews</a>
-            </small>
-        </div>*@
-
-    <style>
-        .jumbotron {
-            background-color: #829096;
-        }
-
-        .my-3 {
-            background-color: #829096;
-        }
-
-        .View-Content form {
+        .View-Content form input {
             width: 100%;
+            height: 100%;
         }
 
-            .View-Content form input {
-                width: 100%;
-                height: 100%;
-            }
+    div .col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
-        div .col {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    .grid-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-areas: "Title Title Title" "Photo Director-Label Director-Input" "Photo Release-Date-Label Release-Date-Input" "Photo Duration-Label Duration-Input" "Photo Genre-Label Genre-Input" "Photo Status-Label Status-Input" "Photo Accessibility-Label Accessibility-Input" "Photo View-Content View-Content" "Functions Functions Functions";
+    }
 
-        .grid-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 1fr 1fr 1fr;
-            grid-template-areas: "Title Title Title" "Photo Director-Label Director-Input" "Photo Release-Date-Label Release-Date-Input" "Photo Duration-Label Duration-Input" "Photo Genre-Label Genre-Input" "Photo Status-Label Status-Input" "Photo Accessibility-Label Accessibility-Input" "Photo View-Content View-Content" "Functions Functions Functions";
-        }
+    .Title {
+        display: flex;
+        justify-content: center;
+        grid-area: Title;
+        font-size: 40px;
+        letter-spacing: 2px;
+    }
 
-        .Title {
-            display: flex;
-            justify-content: center;
-            grid-area: Title;
-            font-size: 40px;
-            letter-spacing: 2px;
-        }
-
-        .Functions {
-            grid-area: Functions;
-            display: flex;
-            justify-content: center;
-        }
-    </style>
+    .Functions {
+        grid-area: Functions;
+        display: flex;
+        justify-content: center;
+    }
+</style>
