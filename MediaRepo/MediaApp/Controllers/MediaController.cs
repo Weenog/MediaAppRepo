@@ -255,23 +255,37 @@ x.Id
             return (RedirectToAction("Index"));
         }
 
-        [HttpPost]
+        [HttpGet]
         [Authorize]
-        public async Task<IActionResult> EditReview(int mediaId, MediaDetailViewModel vm)
+        public async Task<IActionResult> EditReview(int mediaId)
         {
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             Review ReviewToEdit = await _dbContext.Reviews.Where(x => x.MediaId == mediaId && x.UserId == userId).FirstOrDefaultAsync();
-            ReviewToEdit.Comment = vm.Comment;
+            ReviewEditViewModel evm = new ReviewEditViewModel();
+            //can't find ReviewTEdit, why?
+            evm.Comment = ReviewToEdit.Comment;
+            return View (evm);
+          
+        }
+
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public async Task<IActionResult> EditReview(int mediaId, ReviewEditViewModel evm)
+        {
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            Review changedreview = await _dbContext.Reviews.Where(x => x.MediaId == mediaId && x.UserId == userId).FirstOrDefaultAsync();
+
+            changedreview.Comment = evm.Comment;
+         
+            var review = _dbContext.Reviews.SingleOrDefault(x => x.MediaId == mediaId && x.UserId == userId);
+            _dbContext.Remove(review);
+            _dbContext.Reviews.Update(changedreview);
             await _dbContext.SaveChangesAsync();
             return (RedirectToAction("Index"));
         }
     }
 }
-        
-
-
-
-
 
 
 
