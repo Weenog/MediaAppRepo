@@ -262,7 +262,7 @@ x.Id
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             Review ReviewToEdit = await _dbContext.Reviews.Where(x => x.MediaId == mediaId && x.UserId == userId).FirstOrDefaultAsync();
             ReviewEditViewModel evm = new ReviewEditViewModel();
-            //can't find ReviewTEdit, why?
+            
             evm.Comment = ReviewToEdit.Comment;
             return View (evm);
           
@@ -275,8 +275,9 @@ x.Id
         {
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             Review changedreview = await _dbContext.Reviews.Where(x => x.MediaId == mediaId && x.UserId == userId).FirstOrDefaultAsync();
-
             changedreview.Comment = evm.Comment;
+
+            //edit does not fully work, it probably has something to do with the asp route)
          
             var review = _dbContext.Reviews.SingleOrDefault(x => x.MediaId == mediaId && x.UserId == userId);
             _dbContext.Remove(review);

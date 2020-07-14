@@ -1,16 +1,13 @@
 ﻿
 @model ReviewEditViewModel;
-    <br />
-    <strong>This is the REVIEW EDIT page.</strong>
+<br />
+<strong>This is the REVIEW EDIT page.</strong>
 
-    <form asp-controller="media" asp-action="editreview" method="post">
+<form asp-controller="media" asp-action="editreview" asp-route-Mediaid="@Model.MediaId" method="post">
 
-        <div class="form-group">
-            <label asp-for="Comment"></label>
-            <input asp-for="Comment" />
-        </div>
-
-      
-
-        <button class="btn-success" type="submit">Save Changes</button>
-    </form>
+    <div class="form-group">
+        <label asp-for="Comment"></label>
+        <input asp-for="Comment" />
+    </div>
+    <button class="btn-success" type="submit">Save Changes</button>
+</form>
