@@ -264,23 +264,22 @@ x.Id
             ReviewEditViewModel evm = new ReviewEditViewModel();
             
             evm.Comment = ReviewToEdit.Comment;
+            evm.MediaId = ReviewToEdit.MediaId;
             return View (evm);
-          
+
         }
 
         [Authorize]
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public async Task<IActionResult> EditReview(int mediaId, ReviewEditViewModel evm)
+        public async Task<IActionResult> EditReview(int mediaid, ReviewEditViewModel evm)
         {
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            Review changedreview = await _dbContext.Reviews.Where(x => x.MediaId == mediaId && x.UserId == userId).FirstOrDefaultAsync();
+            Review changedreview = await _dbContext.Reviews.Where(x => x.MediaId == mediaid && x.UserId == userId).FirstOrDefaultAsync();
             changedreview.Comment = evm.Comment;
-
-            //edit does not fully work, it probably has something to do with the asp route)
-         
-            var review = _dbContext.Reviews.SingleOrDefault(x => x.MediaId == mediaId && x.UserId == userId);
-            _dbContext.Remove(review);
+            //does not fully work, it probably has something to do with the asp route)
+            //var review = _dbContext.Reviews.SingleOrDefault(x => x.MediaId == mediaId && x.UserId == userId);
+            //_dbContext.Remove(review);
             _dbContext.Reviews.Update(changedreview);
             await _dbContext.SaveChangesAsync();
             return (RedirectToAction("Index"));

@@ -3,11 +3,18 @@
 <br />
 <strong>This is the REVIEW EDIT page.</strong>
 
-<form asp-controller="media" asp-action="editreview" asp-route-Mediaid="@Model.MediaId" method="post">
-
+<form asp-controller="media" asp-action="EditReview" asp-route-mediaid="@Model.MediaId" method="post">
+    @Model.MediaId
     <div class="form-group">
         <label asp-for="Comment"></label>
         <input asp-for="Comment" />
     </div>
     <button class="btn-success" type="submit">Save Changes</button>
 </form>
+
+@*<a asp-controller="media" asp-action="EditReview" asp-route-MediaId="@Model.MediaId" method="post">
+</a>
+<div class="form-group">
+    <label asp-for="Comment"></label>
+    <input asp-for="Comment" />
+</div><button class=" btn-*@
