@@ -21,7 +21,43 @@
         </div>
     </div>
 
-
+    <div class="Creator" style="position:relative; left:35%; top:-280px;">
+        @Model.Category by @Model.Creator
+        <br>
+            Initial Release: @Model.Date.Year
+        <br>
+        <div class="info">
+            User Rating:
+            @switch (Model.Rating)
+            {
+                case 0:<span class="stars-container stars-0">★★★★★</span>
+                    break;
+                case 1:<span class="stars-container stars-10">★★★★★</span>
+                    break;
+                case 2:<span class="stars-container stars-20">★★★★★</span>
+                    break;
+                case 3:<span class="stars-container stars-30">★★★★★</span>
+                    break;
+                case 4:<span class="stars-container stars-40">★★★★★</span>
+                    break;
+                case 5:<span class="stars-container stars-50">★★★★★</span>
+                    break;
+                case 6:<span class="stars-container stars-60">★★★★★</span>
+                    break;
+                case 7:<span class="stars-container stars-70">★★★★★</span>
+                    break;
+                case 8:<span class="stars-container stars-80">★★★★★</span>
+                    break;
+                case 9:<span class="stars-container stars-90">★★★★★</span>
+                    break;
+                case 10:<span class="stars-container stars-100">★★★★★</span>
+                    break;
+            }
+            <br>
+            Community Rating: <span class="stars-container stars-0">★★★★★</span> (@Model.Reviews.Count Review)
+        </div>
+    </div>
+    
 
     <div class="Functions">
         <p>
@@ -57,7 +93,7 @@
         <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
             <strong class="d-block text-gray-dark">
                 @@username
-                <span class="stars-container stars-70" style="position:relative; left:85%;">★★★★★</span>
+                <span class="stars-container stars-0" style="position:relative; left:83%;">★★★★★</span>
                 <h>@review.Comment</h>
             </strong>
         </p>
